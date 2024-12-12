@@ -8,14 +8,14 @@ Ini adalah proyek Laravel yang digunakan untuk [deskripsi proyek]. Proyek ini di
 - Composer
 - MySQL atau database lain yang didukung Laravel
   
-## <h1>NOTE</h1>
+## <h1>NOTE
 <b>nama pengguna : admin@gmail.com</b>
 
 <b>kata sandi : admin<b>
 
 (kalau tidak bisa login, cek database users)
 or
-(buat user di database)
+(buat user di database)</h1>
 
 ## Langkah Instalasi
 
