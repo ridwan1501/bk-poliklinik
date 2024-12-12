@@ -9,12 +9,13 @@ Ini adalah proyek Laravel yang digunakan untuk [deskripsi proyek]. Proyek ini di
 - MySQL atau database lain yang didukung Laravel
   
 ## <h1>NOTE</h1>
-nama pengguna: admin@gmail.com
-kata sandi: admin
+<b>nama pengguna : admin@gmail.com</b>
+<b>kata sandi : admin<b>
 
 (kalau tidak bisa login, cek database users)
 or
 (buat user di database)
+
 ## Langkah Instalasi
 
 ### 1. Clone Repositori
