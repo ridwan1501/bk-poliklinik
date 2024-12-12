@@ -10,6 +10,7 @@ Ini adalah proyek Laravel yang digunakan untuk [deskripsi proyek]. Proyek ini di
   
 ## <h1>NOTE</h1>
 <b>nama pengguna : admin@gmail.com</b>
+
 <b>kata sandi : admin<b>
 
 (kalau tidak bisa login, cek database users)
