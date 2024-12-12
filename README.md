@@ -14,7 +14,7 @@ Ini adalah proyek Laravel yang digunakan untuk [deskripsi proyek]. Proyek ini di
 Clone repositori ini ke mesin lokal Anda menggunakan Git:
 ```bash
 https://github.com/ridwan1501/bk-poliklinik.git
-cd <project-folder>
+cd bk-poliklinik
 ```
 
 ### 2. Install Composer
@@ -57,3 +57,5 @@ nama pengguna: admin@gmail.com
 kata sandi: admin
 
 (kalau tidak bisa login, cek database users)
+or
+(buat user di database)
