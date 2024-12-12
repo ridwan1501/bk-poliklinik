@@ -37,8 +37,7 @@ cp .env.example .env
 ```
 
 ### 4. Buat Database Baru
-Buka phpMyAdmin/Tools Lain -> create new database -> sesuaikan dengan 
-
+Buka phpMyAdmin/Tools Lain -> create new database -> sesuaikan dengan nama database yang di .env
 
 ### 5. Sesuaikan config .env yang ingin digunakan
 Sesuaikan file .env yang tadi dicopy seperti config host, nama database, username, password
