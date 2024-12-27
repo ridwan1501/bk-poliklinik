@@ -41,6 +41,8 @@ Route::group(['middleware' => 'auth', 'as' => 'backoffice.', 'prefix' => 'backof
     Route::post('dokter', ['as' => 'dokter.store', 'uses' => 'App\Http\Controllers\DokterController@store']);
     Route::put('dokter/{id}', ['as' => 'dokter.update', 'uses' => 'App\Http\Controllers\DokterController@update']);
     Route::delete('dokter/{id}', ['as' => 'dokter.destroy', 'uses' => 'App\Http\Controllers\DokterController@destroy']);
+    Route::get('dokter/edit', ['as' => 'dokter.edit', 'uses' => 'App\Http\Controllers\DokterController@edit']);
+    Route::post('dokter/update-profil', ['as' => 'dokter.updateProfil', 'uses' => 'App\Http\Controllers\DokterController@updateProfil']);
 
     // Jadwal Periksa
     Route::get('jadwal_periksa', ['as' => 'jadwal_periksa.index', 'uses' => 'App\Http\Controllers\JadwalPeriksaController@index']);

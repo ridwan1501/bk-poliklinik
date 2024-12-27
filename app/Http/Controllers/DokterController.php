@@ -97,4 +97,24 @@ class DokterController extends Controller
             'message' => 'Dokter deleted successfully'
         ], 200);
     }
+
+    public function edit()
+    {
+        $dokter = auth()->user(); // Ambil data dokter login
+        return view('dashboard.dokter.edit', compact('dokter'));
+    }
+
+    public function updateProfil(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . auth()->id(),
+            'phone' => 'nullable|string|max:15',
+        ]);
+
+        $dokter = auth()->user();
+        $dokter->update($request->only('name', 'email', 'phone'));
+
+        return redirect()->route('backoffice.dokter.edit')->with('success', 'Profil berhasil diperbarui.');
+    }
 }

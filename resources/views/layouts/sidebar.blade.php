@@ -63,6 +63,9 @@
                     <li>
                         <a href="{{ route('backoffice.registrasi.history') }}"> <i data-feather="list" class="align-self-center menu-icon"></i><span>Pemeriksaan</span></a>
                     </li>
+                    <li>
+                        <a href="{{ route('backoffice.dokter.edit') }}"> <i data-feather="list" class="align-self-center menu-icon"></i><span>Edit Profil</span></a>
+                    </li>
                 @elseif(auth()->user()->role === 'pasien')
                     <li class="menu-label mt-0">Main</li>
                     <li>
