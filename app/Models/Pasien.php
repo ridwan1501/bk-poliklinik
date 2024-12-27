@@ -21,7 +21,7 @@ class Pasien extends Model
         $lastPasien = Pasien::count();
         $currentYear = date('Y');
         $currentMonth = date('m');
-        $noRM = $currentYear . $currentMonth . '-' . sprintf('%04d', $lastPasien + 1);
+        $noRM = $currentYear . $currentMonth . '-' . sprintf('%03d', $lastPasien + 1);
 
         return $noRM;
     }
