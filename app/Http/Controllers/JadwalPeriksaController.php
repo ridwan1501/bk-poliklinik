@@ -44,26 +44,47 @@ class JadwalPeriksaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(JadwalPeriksaRequest $request)
-    {
+{
+    try {
         $payload = $request->validated();
         $id_dokter = Auth::user()->id_dokter;
         if ($id_dokter) {
             $payload['id_dokter'] = $id_dokter;
         }
+
+        // Cek jadwal yang sama
+        $existingJadwal = JadwalPeriksa::where([
+            'id_dokter' => $payload['id_dokter'],
+            'hari' => $payload['hari'],
+        ])->first();
+
+        if ($existingJadwal) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Dokter sudah memiliki jadwal pada hari ' . $payload['hari']
+            ], 422);
+        }
+
         $jadwal = JadwalPeriksa::create($payload);
 
         if ($payload['status'] == 1) {
             JadwalPeriksa::where('id_dokter', $payload['id_dokter'])
-            ->where('id', '!=', $jadwal->id)
-            ->update([
-                'status' => false,
-            ]);
+                ->where('id', '!=', $jadwal->id)
+                ->update(['status' => false]);
         }
 
         return response()->json([
-            'message' => 'Jadwal Periksa created successfully'
+            'status' => 'success',
+            'message' => 'Jadwal Periksa berhasil ditambahkan'
         ], 200);
+
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Gagal menambahkan jadwal: ' . $e->getMessage()
+        ], 500);
     }
+}
 
     /**
      * Update the specified resource in storage.
@@ -73,27 +94,52 @@ class JadwalPeriksaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(JadwalPeriksaRequest $request, $id)
-    {
+{
+    try {
         $jadwalPeriksa = JadwalPeriksa::findOrFail($id);
         $payload = $request->validated();
         $id_dokter = Auth::user()->id_dokter;
         if ($id_dokter) {
             $payload['id_dokter'] = $id_dokter;
         }
+
+        // Cek jadwal yang sama selain jadwal yang sedang diupdate
+        if (isset($payload['hari'])) {
+            $existingJadwal = JadwalPeriksa::where([
+                'id_dokter' => $payload['id_dokter'],
+                'hari' => $payload['hari'],
+            ])
+            ->where('id', '!=', $id)
+            ->first();
+
+            if ($existingJadwal) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Dokter sudah memiliki jadwal pada hari ' . $payload['hari']
+                ], 422);
+            }
+        }
+
         $jadwalPeriksa->update($payload);
 
         if ($payload['status'] == 1) {
             JadwalPeriksa::where('id_dokter', $payload['id_dokter'])
                 ->where('id', '!=', $id)
-                ->update([
-                    'status' => false,
-                ]);
+                ->update(['status' => false]);
         }
 
         return response()->json([
-            'message' => 'Jadwal Periksa updated successfully'
+            'status' => 'success',
+            'message' => 'Jadwal Periksa berhasil diperbarui'
         ], 200);
+
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Gagal memperbarui jadwal: ' . $e->getMessage()
+        ], 500);
     }
+}
 
     /**
      * Remove the specified resource from storage.
